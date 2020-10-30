@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const auth = require('../middleware/auth')
 const toSignUp = require('../models/signUp')
-
+require('../db/mongoose')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcryptjs');
 const {updateTask,tofindvalue,passwordMatch,mailSender} = require('../util/extraImpfiles')
@@ -19,9 +19,6 @@ loginRouter.post('/register',(request,response)=>{
        return response.status(200).json({status: request.body.mail+'Registered' });
     }).catch((e)=>{
         console.log(e.message)
-        response.render('signUp',{
-            error : e.message
-        })
     });
 
 
